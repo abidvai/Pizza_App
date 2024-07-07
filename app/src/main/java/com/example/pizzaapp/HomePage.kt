@@ -3,6 +3,7 @@ package com.example.pizzaapp
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -10,12 +11,17 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -40,15 +46,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.example.pizzaapp.GifCoomposable.GifImage
+import com.example.pizzaapp.Navigation.ScreenRoute
 import com.example.pizzaapp.ui.theme.homepageBg
 import com.example.pizzaapp.ui.theme.popbar_1
 import com.example.pizzaapp.ui.theme.topbarContent
 
-
-@Preview(showSystemUi = true)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomePage() {
+fun HomePage(navController: NavHostController) {
     val chipList = listOf("Starter", "Asian", "Belgium", "spain", "Pacha & Roast & Grill")
     var chipIndex by rememberSaveable { mutableIntStateOf(0) }
 
@@ -119,6 +127,43 @@ fun HomePage() {
                     actionIconContentColor = topbarContent
                 )
             )
+        },
+        bottomBar = {
+            BottomAppBar(
+                containerColor = popbar_1,
+                contentColor = Color.Red,
+                tonalElevation = 8.dp,
+                modifier = Modifier.background(MaterialTheme.colorScheme.onPrimary)
+            ){
+                IconButton(onClick = {
+                                     navController.navigate(ScreenRoute.Home.route)
+                },
+                    modifier = Modifier.padding(start = 10.dp)) {
+                    Icon(Icons.Default.Home, contentDescription = "Homebar",
+                        modifier = Modifier.size(50.dp))
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = {
+                    navController.navigate(ScreenRoute.Profile.route)
+                }) {
+                    GifImage(resourceId = R.drawable.profile)
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = {
+                    navController.navigate(ScreenRoute.Favourite.route)
+                }) {
+                    Icon(Icons.Default.Favorite, contentDescription = "Favorite",
+                        modifier = Modifier.size(50.dp))
+                }
+                Spacer(modifier = Modifier.weight(1f))
+                IconButton(onClick = {
+                                     navController.navigate(ScreenRoute.Settings.route)
+                },
+                    Modifier.padding(end = 10.dp)) {
+                    Icon(Icons.Default.Settings, contentDescription = "Settings",
+                        modifier = Modifier.size(50.dp))
+                }
+            }
         },
         floatingActionButton = {
             BadgedBox(badge = {
