@@ -6,8 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.pizzaapp.HomePage
-import com.example.pizzaapp.ShowPizza
+import com.example.pizzaapp.AppScreens.HomePage
 
 @Composable
 fun NavGraph() {

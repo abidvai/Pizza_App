@@ -1,4 +1,4 @@
-package com.example.pizzaapp
+package com.example.pizzaapp.AppScreens
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape

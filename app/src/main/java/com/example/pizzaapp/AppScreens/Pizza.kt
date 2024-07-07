@@ -1,9 +1,7 @@
-package com.example.pizzaapp
+package com.example.pizzaapp.AppScreens
 
 import androidx.annotation.DrawableRes
-import androidx.compose.material3.Badge
-import androidx.compose.material3.Text
-import androidx.compose.ui.graphics.Color
+import com.example.pizzaapp.R
 
 data class Pizza(
     @DrawableRes val image: Int,
